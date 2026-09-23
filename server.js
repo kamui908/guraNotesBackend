@@ -19,9 +19,13 @@ if (!MONGO_URI) {
   process.exit(1);
 }
 
-// Connect to MongoDB
-mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log("✅ MongoDB connected"))
+// Connect to the guraNotes database in the MongoDB cluster
+mongoose.connect(MONGO_URI, {
+  dbName: "guraNotes",
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+  .then(() => console.log("✅ MongoDB connected to guraNotes"))
   .catch(err => {
     console.error("❌ MongoDB connection error:", err);
     process.exit(1);
